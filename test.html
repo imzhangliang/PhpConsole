@@ -1,0 +1,30 @@
+<html>
+<head>
+	<style>
+	#input {width: 400px; height: 500px; float: left}
+	.convert_symbol {border: 1px solid white; float: left; width: 60px; height: 500px; margin: 0 10px; vertical-align: bottom; position: relative;}
+	#sub {position: absolute; top: 50%; width: 100%; }
+	#output {width: 400px; height: 500px; float: left}
+	</style>
+	<script src="jquery-3.1.0.min.js"></script>
+</head>
+<body>
+<textarea id="input"></textarea>
+<div class="convert_symbol">
+	<button id="sub"><span>&gt;</span></button>
+</div>
+<textarea id="output"></textarea>
+<script>
+$("#sub").click(function(){
+		var phpCode = $("#input").val();
+
+		$.post("upload.php", {"phpCode":phpCode}, function(data){
+			$.get("tmp.php", function(data){
+				$("#output").val(data);
+			});
+		});
+});
+
+</script>
+</body>
+</html>
